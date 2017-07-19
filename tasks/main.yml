@@ -1,0 +1,67 @@
+---
+# tasks file for ansible-role-sonarr
+- name: Create Sonarr user
+  user: 
+    name: "{{ sonarr_user }}"
+    state: present
+    shell: /sbin/nologin
+    home: "{{ sonarr_home }}"
+  tags:
+    - add_sonarr_user
+
+- name: Create Sonarr directory
+  file:
+    dest: "{{ sonarr_directory }}"
+    owner: "{{ sonarr_user }}"
+    group: "{{ sonarr_user }}"
+    state: directory
+
+- name: Install epel-release
+  yum:
+    name: epel-release
+    state: present
+
+- name: Add mono repo
+  yum_repository: 
+    name: mono
+    description: Mono YUM repo
+    baseurl: "{{ mono_baseurl }}"
+    gpgkey: "{{ mono_gpgurl }}"
+    gpgcheck: yes
+
+- name: Install yum prerequisites
+  yum:
+    name: "{{ item }}"
+    state: latest
+  with_items: "{{ sonarr_prereqs }}"
+
+- name: Extract sonarr
+  unarchive:
+    src: "{{ sonarr_url }}"
+    dest: "{{ sonarr_directory }}"
+    owner: "{{ sonarr_user }}"
+    group: "{{ sonarr_user }}"
+    remote_src: true
+    extra_opts: "--strip-components=1"
+
+- name: Update file permissions
+  file:
+    path: "{{ sonarr_directory }}"
+    owner: "{{ sonarr_user }}"
+    group: "{{ sonarr_user }}"
+    recurse: yes
+
+- name: Copy service unit template
+  template:
+    src: sonarr.service.j2
+    dest: /etc/systemd/system/sonarr.service
+    mode: 0644
+  notify:
+    - restart sonarr
+
+- name: Set to start on boot
+  systemd:
+    name: sonarr.service
+    enabled: yes
+    daemon_reload: yes
+    state: started

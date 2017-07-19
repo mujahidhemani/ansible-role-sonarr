@@ -1,0 +1,9 @@
+galaxy_info:
+  author: Mujahid Hemani
+  description: An Ansible role to install Sonarr on CentOS 7
+  min_ansible_version: 2.3
+  license: license (GPLv3)
+  platforms:
+   - name: EL
+     versions:
+     - 7

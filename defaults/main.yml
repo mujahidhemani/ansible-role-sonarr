@@ -1,0 +1,6 @@
+---
+# defaults file for ansible-role-sonarr
+
+sonarr_directory: /opt/sonarr/
+sonarr_user: sonarr
+sonarr_home: /home/{{ sonarr_user }}

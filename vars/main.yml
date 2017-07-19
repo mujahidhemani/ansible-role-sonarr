@@ -1,0 +1,29 @@
+---
+# vars file for ansible-role-sonarr
+sonarr_prereqs:
+  - wget
+  - git
+  - par2cmdline
+  - p7zip
+  - unrar
+  - unzip
+  - tar
+  - gcc
+  - python-feedparser
+  - python-configobj
+  - python-cheetah
+  - python-dbus
+  - python-devel
+  - epel-release
+  - libxslt-devel
+  - mediainfo
+  - libzen
+  - libmediainfo
+  - curl
+  - gettext
+  - mono-core
+  - mono-devel
+  - sqlite.x86_64
+sonarr_url: http://update.sonarr.tv/v2/master/mono/NzbDrone.master.tar.gz
+mono_baseurl: http://download.mono-project.com/repo/centos7/
+mono_gpgurl: http://keyserver.ubuntu.com/pks/lookup?op=get&search=0x3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF

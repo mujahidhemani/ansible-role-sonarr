@@ -1,0 +1,14 @@
+#
+# Systemd unit file for Sonarr
+#
+[Unit]
+Description=Sonarr Daemon
+After=syslog.target network.target
+[Service]
+User={{ sonarr_user }}
+Group={{ sonarr_user }}
+Type=simple
+ExecStart=/usr/bin/mono {{ sonarr_directory }}NzbDrone.exe -nobrowser -data {{ sonarr_home }}
+TimeoutStopSec=20
+[Install]
+WantedBy=multi-user.target
