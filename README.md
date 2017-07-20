@@ -23,7 +23,7 @@ Vars:
 - sonarr_prereqs - all sonarr prerequisite packages that need to be installed via Yum
 - sonarr_url - sonarr latest release url
 - mono_baseurl - mono repo url
-- mono_gpgkey - mono repo gpgkey url 
+- mono_gpgurl - mono repo gpgkey url 
 
 Dependencies
 ------------
