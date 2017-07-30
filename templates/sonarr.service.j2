@@ -5,6 +5,7 @@
 Description=Sonarr Daemon
 After=syslog.target network.target
 [Service]
+Environment=MONO_TLS_PROVIDER=legacy
 User={{ sonarr_user }}
 Group={{ sonarr_user }}
 Type=simple
