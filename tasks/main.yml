@@ -21,6 +21,11 @@
     name: epel-release
     state: present
 
+- name: Install rpmforge repo
+  yum:
+    name: "{{ rpmforge_repo }}"
+    state: present
+
 - name: Add mono repo
   yum_repository: 
     name: mono
