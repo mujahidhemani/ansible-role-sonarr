@@ -2,6 +2,7 @@
 # handlers file for ansible-role-sonarr
 
 - name: restart sonarr
-  service: 
+  systemd: 
     name: sonarr.service
     state: restarted
+    daemon-reload: yes
